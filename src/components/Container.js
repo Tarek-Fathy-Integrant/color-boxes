@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import "./Container.css";
 import Box from './Box';
 
 class Container extends Component {
-      
+    static defaultProps = {
+        numBoxes: 18,
+        allColors: ["purple", "magenta", "violet", "pink"]
+    };
     render() {
-        const {base} = this.props.base;
-        let numBoxes = base * base;
-        let boxes = [];
-        for(let i = 0; i < numBoxes; i++){
-            boxes.push(<Box />)
-        }
-        return <div>
-            {boxes}
-        </div>
+        const boxes = Array.from({ length: this.props.numBoxes }).map(() => (
+            <Box colors={this.props.allColors} />
+        ));
+
+        return <div className='Container'>{boxes}</div>;
     }
 }
 
